@@ -1,6 +1,7 @@
 Feature: primetable outputs a multiplication table of prime numbers,
-         the option -l adds row and column labels to the table. We specify the
+         the option -c adds coloured output to the table. We specify the
          print the multiplication table of the first 3 prime numbers.
+         Unfortunately, the ANSI colour strings look ugly.
 
 @ansi
 Scenario: Generate table to stdout
