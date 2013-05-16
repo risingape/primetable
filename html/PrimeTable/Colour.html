@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class PrimeTable::Colour - funding_primer - Multiplication tables for prime numbers!</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/primetable/decorator.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Decorator.html">PrimeTable::Decorator</a>
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-i-product">#product</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../PrimeApp.html">PrimeApp</a>
+  
+    <li><a href="../PrimeApp/Primetable.html">PrimeApp::Primetable</a>
+  
+    <li><a href="../PrimeTable.html">PrimeTable</a>
+  
+    <li><a href="../PrimeTable/Colour.html">PrimeTable::Colour</a>
+  
+    <li><a href="../PrimeTable/Decorator.html">PrimeTable::Decorator</a>
+  
+    <li><a href="../PrimeTable/DummyGenerator.html">PrimeTable::DummyGenerator</a>
+  
+    <li><a href="../PrimeTable/DummyGenerator2.html">PrimeTable::DummyGenerator2</a>
+  
+    <li><a href="../PrimeTable/Erastosthenes.html">PrimeTable::Erastosthenes</a>
+  
+    <li><a href="../PrimeTable/Headings.html">PrimeTable::Headings</a>
+  
+    <li><a href="../PrimeTable/PrimeGenerator.html">PrimeTable::PrimeGenerator</a>
+  
+    <li><a href="../PrimeTable/Table.html">PrimeTable::Table</a>
+  
+    <li><a href="../PrimeTable/TensorProduct.html">PrimeTable::TensorProduct</a>
+  
+    <li><a href="../Primetable.html">Primetable</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class PrimeTable::Colour</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-product" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">product</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="product-source">
+            <pre><span class="ruby-comment"># File lib/primetable/decorator.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">product</span>
+
+  <span class="ruby-comment"># for aruba testing purposes only:</span>
+  <span class="ruby-comment"># if we are not writing to STDOUT, rainbao strips all the colour out.</span>
+  <span class="ruby-comment"># Depending on the environment variable &quot;FORCE_COLOURS&quot; we force </span>
+  <span class="ruby-comment"># rainbow to colour the output regardless of the output stream.</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;FORCE_COLORS&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;TRUE&quot;</span> 
+    <span class="ruby-constant">Sickill</span><span class="ruby-operator">::</span><span class="ruby-constant">Rainbow</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># deep copy of every element since a string is just an object</span>
+  <span class="ruby-comment"># this is a design choice to make the bahaviour of all decorators consistent.</span>
+  <span class="ruby-identifier">array_to_colour</span> = <span class="ruby-ivar">@component</span>.<span class="ruby-identifier">product</span>.<span class="ruby-identifier">inject</span>([]) { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">element</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">dup</span> }
+
+  <span class="ruby-identifier">array_to_colour</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">array_to_colour</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">array_to_colour</span>[<span class="ruby-identifier">r</span>][<span class="ruby-identifier">c</span>] = <span class="ruby-identifier">array_to_colour</span>[<span class="ruby-identifier">r</span>][<span class="ruby-identifier">c</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">bright</span>.<span class="ruby-identifier">color</span> <span class="ruby-value">:cyan</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">r</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">array_to_colour</span>[<span class="ruby-identifier">r</span>][<span class="ruby-identifier">c</span>] = <span class="ruby-identifier">array_to_colour</span>[<span class="ruby-identifier">r</span>][<span class="ruby-identifier">c</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">bright</span>.<span class="ruby-identifier">color</span> <span class="ruby-value">:cyan</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">r</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">array_to_colour</span>[<span class="ruby-identifier">r</span>][<span class="ruby-identifier">c</span>] = <span class="ruby-identifier">array_to_colour</span>[<span class="ruby-identifier">r</span>][<span class="ruby-identifier">c</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">color</span> <span class="ruby-value">:green</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">r</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">r</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">c</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+ 
+  <span class="ruby-identifier">array_to_colour</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- product-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- product-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

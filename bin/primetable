@@ -1,0 +1,131 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'methadone'
+require 'io/wait'
+
+require_relative '../lib/primetable'
+
+
+# = Summary
+#<tt>primeApp</tt> is a simple command line application to compute and display
+# the multiplication table of the first n prime numbers.
+#
+# = Overall implementation approach:
+#
+# Each algorithm to generate prime numbers is encapsulated in a subclass of
+# <tt>PrimeTable::PrimeGenerator</tt>. <tt>PrimeTable::PrimeGenerator</tt> and
+# its subclasses implement the [Strategy pattern](http://http://en.wikipedia.org/wiki/Strategy_pattern).
+#
+# The multiplication table itself is computed by the 
+# <tt>PrimeTable::TensorProduct</tt> class.
+#
+# The formatting of the multiplication table is done by <tt>PrimeTable::Decorator</tt>
+# implementing the [Decorator pattern](http://http://en.wikipedia.org/wiki/Decorator_pattern).
+#
+# = Features implemented
+# * Compute primes with a multi-threaded native C implementation of the Sieve of
+#   Erastosthenes using POSIX threads (pthreads),
+# * Other prime generation algorithm just need to be implemented as a subclass
+#   of <tt>PrimeTable::PrimeGenerator</tt>. No further changes are necessary,
+#   we automatically find the new class using reflection,
+# * Decorators implemented so far:
+#   - <tt>PrimeTable::Headings</tt> adds headings to the table,
+#   - <tt>PrimeTable::Colour</tt> colours the first row and column as well as
+#     the diagonal,
+#   - <tt>PrimeTable::Table</tt> adds column and row seperators,
+# * Accepts input from STDIN.
+class PrimeApp
+
+  include PrimeTable
+  include Methadone::Main
+  include Methadone::CLILogging
+
+  main do |nprimes = 10|
+    
+    # In the good old UNIX tradition we want to be able to read from STDIN.
+    # Unfortunately, we have to check 3 cases:
+    # * we are connected to a terminal (tty) and got something,
+    # * we are connected to STDIN and the stream is ready,
+    # * neither and we use the default
+    #
+    # As a design decision, we give preference to the user input.
+    if ARGV.length != 0
+      nprimes = ARGV[0]
+      debug "via ARGV: " + ARGV[0]
+    elsif STDIN.ready?
+      nprimes = STDIN.gets
+      debug "via STDIN: " + nprimes.to_s     
+    end
+    debug "number of primes: " + nprimes.to_s
+  
+    # we expect an integer as input argument and check the argument using 
+    # a regular expression. Unfortunately Methadone does not do this for us
+    if nprimes.is_a? String and /^[0-9]+(.0)?$/.match(nprimes)
+        nprimes = nprimes.delete(',').to_i
+    elsif nprimes.is_a? String
+        abort("Invalid argument: [number_of_primes] has to be an integer. Use -h or --help for usage information.")
+    end
+
+    # instantiate algorithm by name string
+    if options[:alg].nil?
+        options[:alg] = "Erastosthenes"
+    end
+
+    # generate the first n primes using the chosen algorithm
+    # if there is a problem with our threading in the native C extension 
+    # catch the exception and print the backtrace and die.
+    begin
+      primes = PrimeGenerator.first(nprimes,  options[:alg].to_s)
+    rescue ThreadError => e
+      error e.message
+      error e.backtrace.inspect
+      exit
+    end
+    
+    # decorate it depending on the options
+    decoratedTable = TensorProduct.new(primes)
+
+    if options[:label]
+      decoratedTable = Headings.new(decoratedTable)
+    end
+
+    if options[:colour]
+      decoratedTable = Colour.new(decoratedTable)
+    end
+
+    # compute and display the table
+    puts Table.new(decoratedTable).product
+
+  end
+
+
+  # Declaration of the command-line interface
+  # NOTE: Methadone does not allow us to check the the type of an argument,
+  # only of an option. So we have to check the argument in main itself.
+
+  description "Compute multiplication tables of the first n prime numbers!
+  By default the multiplication table of the first 10 primes 
+  without labels and coloured output is displayed."  
+
+  #
+  # Accept flags via:
+  # on("--flag VAL","Some flag")
+  # options[flag] will contain VAL
+  #
+  # Specify switches:
+  
+  # colour and algorithm option
+  on("--colour", "-c","Print a coloured table")
+  on("--label", "-l", "Print row and column labels")
+  on("--alg VAL", "-a", "Erastosthenes or Atkins sieve algorithm")  
+
+  # Optionally specify the number of primes, default is 10
+  arg :number_of_primes, :optional
+
+  version Primetable::VERSION
+
+  use_log_level_option
+
+  go!
+end

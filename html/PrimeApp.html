@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class PrimeApp - funding_primer - Multiplication tables for prime numbers!</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>bin/primetable
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="PrimeTable.html">PrimeTable</a>
+  
+  
+  
+    <li><span class="include">Methadone::Main</span>
+  
+  
+  
+    <li><span class="include">Methadone::CLILogging</span>
+  
+  
+  </ul>
+</nav>
+
+    
+    
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./PrimeApp.html">PrimeApp</a>
+  
+    <li><a href="./PrimeApp/Primetable.html">PrimeApp::Primetable</a>
+  
+    <li><a href="./PrimeTable.html">PrimeTable</a>
+  
+    <li><a href="./PrimeTable/Colour.html">PrimeTable::Colour</a>
+  
+    <li><a href="./PrimeTable/Decorator.html">PrimeTable::Decorator</a>
+  
+    <li><a href="./PrimeTable/DummyGenerator.html">PrimeTable::DummyGenerator</a>
+  
+    <li><a href="./PrimeTable/DummyGenerator2.html">PrimeTable::DummyGenerator2</a>
+  
+    <li><a href="./PrimeTable/Erastosthenes.html">PrimeTable::Erastosthenes</a>
+  
+    <li><a href="./PrimeTable/Headings.html">PrimeTable::Headings</a>
+  
+    <li><a href="./PrimeTable/PrimeGenerator.html">PrimeTable::PrimeGenerator</a>
+  
+    <li><a href="./PrimeTable/Table.html">PrimeTable::Table</a>
+  
+    <li><a href="./PrimeTable/TensorProduct.html">PrimeTable::TensorProduct</a>
+  
+    <li><a href="./Primetable.html">Primetable</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class PrimeApp</h1>
+
+  <div id="description" class="description">
+    
+<pre>= Summary</pre>
+
+<p><code>primeApp</code> is a simple command line application to compute and
+display</p>
+
+<pre class="ruby"><span class="ruby-identifier">the</span> <span class="ruby-identifier">multiplication</span> <span class="ruby-identifier">table</span> <span class="ruby-identifier">of</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">first</span> <span class="ruby-identifier">n</span> <span class="ruby-identifier">prime</span> <span class="ruby-identifier">numbers</span>.
+
+= <span class="ruby-constant">Overall</span> <span class="ruby-identifier">implementation</span> <span class="ruby-identifier">approach</span><span class="ruby-operator">:</span>
+
+<span class="ruby-constant">Each</span> <span class="ruby-identifier">algorithm</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">generate</span> <span class="ruby-identifier">prime</span> <span class="ruby-identifier">numbers</span> <span class="ruby-identifier">is</span> <span class="ruby-identifier">encapsulated</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">subclass</span> <span class="ruby-identifier">of</span>
+<span class="ruby-operator">&lt;</span><span class="ruby-identifier">tt</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">PrimeTable</span><span class="ruby-operator">::</span><span class="ruby-constant">PrimeGenerator</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tt&gt;. &lt;tt&gt;PrimeTable::PrimeGenerator&lt;/</span><span class="ruby-identifier">tt</span><span class="ruby-operator">&gt;</span> <span class="ruby-keyword">and</span>
+<span class="ruby-identifier">its</span> <span class="ruby-identifier">subclasses</span> <span class="ruby-identifier">implement</span> <span class="ruby-identifier">the</span> [<span class="ruby-constant">Strategy</span> <span class="ruby-identifier">pattern</span>](<span class="ruby-identifier">http</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">/http:/</span><span class="ruby-operator">/</span><span class="ruby-identifier">en</span>.<span class="ruby-identifier">wikipedia</span>.<span class="ruby-identifier">org</span><span class="ruby-operator">/</span><span class="ruby-identifier">wiki</span><span class="ruby-operator">/</span><span class="ruby-constant">Strategy_pattern</span>).
+
+<span class="ruby-constant">The</span> <span class="ruby-identifier">multiplication</span> <span class="ruby-identifier">table</span> <span class="ruby-identifier">itself</span> <span class="ruby-identifier">is</span> <span class="ruby-identifier">computed</span> <span class="ruby-identifier">by</span> <span class="ruby-identifier">the</span> 
+<span class="ruby-operator">&lt;</span><span class="ruby-identifier">tt</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">PrimeTable</span><span class="ruby-operator">::</span><span class="ruby-constant">TensorProduct</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tt&gt; class.
+
+The formatting of the multiplication table is done by &lt;tt&gt;PrimeTable::Decorator&lt;/</span><span class="ruby-identifier">tt</span><span class="ruby-operator">&gt;</span>
+<span class="ruby-identifier">implementing</span> <span class="ruby-identifier">the</span> [<span class="ruby-constant">Decorator</span> <span class="ruby-identifier">pattern</span>](<span class="ruby-identifier">http</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">/http:/</span><span class="ruby-operator">/</span><span class="ruby-identifier">en</span>.<span class="ruby-identifier">wikipedia</span>.<span class="ruby-identifier">org</span><span class="ruby-operator">/</span><span class="ruby-identifier">wiki</span><span class="ruby-operator">/</span><span class="ruby-constant">Decorator_pattern</span>).
+
+= <span class="ruby-constant">Features</span> <span class="ruby-identifier">implemented</span>
+<span class="ruby-operator">*</span> <span class="ruby-constant">Compute</span> <span class="ruby-identifier">primes</span> <span class="ruby-identifier">with</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">multi</span><span class="ruby-operator">-</span><span class="ruby-identifier">threaded</span> <span class="ruby-identifier">native</span> <span class="ruby-constant">C</span> <span class="ruby-identifier">implementation</span> <span class="ruby-identifier">of</span> <span class="ruby-identifier">the</span> <span class="ruby-constant">Sieve</span> <span class="ruby-identifier">of</span>
+  <span class="ruby-constant">Erastosthenes</span> <span class="ruby-identifier">using</span> <span class="ruby-constant">POSIX</span> <span class="ruby-identifier">threads</span> (<span class="ruby-identifier">pthreads</span>),
+<span class="ruby-operator">*</span> <span class="ruby-constant">Other</span> <span class="ruby-identifier">prime</span> <span class="ruby-identifier">generation</span> <span class="ruby-identifier">algorithm</span> <span class="ruby-identifier">just</span> <span class="ruby-identifier">need</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">be</span> <span class="ruby-identifier">implemented</span> <span class="ruby-identifier">as</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">subclass</span>
+  <span class="ruby-identifier">of</span> <span class="ruby-operator">&lt;</span><span class="ruby-identifier">tt</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">PrimeTable</span><span class="ruby-operator">::</span><span class="ruby-constant">PrimeGenerator</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tt&gt;. No further changes are necessary,
+  we automatically find the new class using reflection,
+* Decorators implemented so far:
+  - &lt;tt&gt;PrimeTable::Headings&lt;/</span><span class="ruby-identifier">tt</span><span class="ruby-operator">&gt;</span> <span class="ruby-identifier">adds</span> <span class="ruby-identifier">headings</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">table</span>,
+  <span class="ruby-operator">-</span> <span class="ruby-operator">&lt;</span><span class="ruby-identifier">tt</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">PrimeTable</span><span class="ruby-operator">::</span><span class="ruby-constant">Colour</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tt&gt; colours the first row and column as well as
+    the diagonal,
+  - &lt;tt&gt;PrimeTable::Table&lt;/</span><span class="ruby-identifier">tt</span><span class="ruby-operator">&gt;</span> <span class="ruby-identifier">adds</span> <span class="ruby-identifier">column</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">row</span> <span class="ruby-identifier">seperators</span>,
+<span class="ruby-operator">*</span> <span class="ruby-constant">Accepts</span> <span class="ruby-identifier">input</span> <span class="ruby-identifier">from</span> <span class="ruby-constant">STDIN</span>.
+</pre>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
