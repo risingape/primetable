@@ -1,6 +1,6 @@
 Feature: primetable outputs a multiplication table of prime numbers,
          the option -l adds row and column labels to the table. We are still
-         using the defaul size of 10.
+         using the default size of 10 primes.
 
 Scenario: Generate table to stdout
     When I run `primetable -l` interactively

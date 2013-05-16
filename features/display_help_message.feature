@@ -1,4 +1,4 @@
-Feature: primetable outputs a table of prime numbers
+Feature: primetable outputs a table of prime numbers. It should give a simple but helpful message explaining the arguments and options.
  
   Scenario: App gives a help message
     When I get help for "primetable"
