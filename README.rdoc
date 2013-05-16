@@ -13,7 +13,8 @@ Prime table prints the multiplication table of the first n prime numbers where n
 Features implemented
  * Compute primes with a multi-threaded native C implementation of the Sieve of
    Erastosthenes using POSIX threads (pthreads),
- * Vectorisation of the inner most loop using SSE instructions,
+ * Very simple shortest-job-first load balancing scheme at the thread level,
+ * Vectorisation of the inner most loop of the prime generation algorithm using SSE instructions,
  * Other prime generation algorithm just need to be implemented as a subclass
    of PrimeTable::PrimeGenerator. No further changes are necessary,
    we automatically find the new class using reflection,
