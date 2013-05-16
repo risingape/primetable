@@ -26,6 +26,8 @@ require_relative '../lib/primetable'
 # = Features implemented
 # * Compute primes with a multi-threaded native C implementation of the Sieve of
 #   Erastosthenes using POSIX threads (pthreads),
+# * Very simple shortest-job-first load balancing scheme at the thread level,
+# * Inner most loop of the prime generation algorithm is vectorised using SSE instructions, 
 # * Other prime generation algorithm just need to be implemented as a subclass
 #   of <tt>PrimeTable::PrimeGenerator</tt>. No further changes are necessary,
 #   we automatically find the new class using reflection,
