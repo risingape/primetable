@@ -36,7 +36,7 @@ desc "Generate rdoc documentation"
 Rake::RDocTask.new do |rd|
   rd.main = "README.rdoc"
   rd.rdoc_files.include("README.rdoc","lib/**/*.rb","bin/**/*")
-  rd.title = 'funding_primer - Multiplication tables for prime numbers!'
+  rd.title = 'primetable - a simple command line tool to compute prime number multiplication tables'
 end
 
 task :default => [:compile, :man, :rdoc, :spec, :features]
